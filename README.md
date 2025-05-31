@@ -4,6 +4,11 @@
 
 Metal Nightmare, yukarıdan görünüşlü, yakın dövüş odaklı bir hayatta kalma oyunudur. Oyuncu, zombilerle dolu şehir sokaklarında kılıcıyla hayatta kalmaya çalışır. Fare imlecine göre saldırı yönünü otomatik belirler ve farklı saldırı animasyonları oynatır. Zombiler bağımsız hızlara ve yapay zekaya sahiptir, oyuncuyu kovalayıp saldırırlar. Zombiler hasar aldıklarında sersemleyip geri savrulur, öldüklerinde ölüm animasyonlarını oynatıp kaybolurlar.
 
+## Geliştirme Süreci
+
+Bu proje bağımsız olarak tasarlanmış ve geliştirilmiştir.  
+Kodlama, animasyon sistemi, oyun mekaniği ve ses tasarımı bana aittir.  
+
 ## Özellikler
 
 - Tam animasyonlu yürüyüş, idle ve saldırı sistemi
