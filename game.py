@@ -415,14 +415,6 @@ def on_mouse_move(pos):
 
 def on_mouse_down(pos):
     global game_state, sound_on, zombies
-
-    if game_state == "gameover":
-        for button in gameover_buttons:
-            bx, by = button["pos"]
-            if abs(pos[0] - bx) < 150 and abs(pos[1] - by) < 40:
-                if button["action"] == "menu":
-                    game_state = "menu"
-
     if game_state == "menu":
         for button in menu_buttons:
             bx, by = button["pos"]

@@ -7,7 +7,7 @@ Metal Nightmare, yukarıdan görünüşlü, yakın dövüş odaklı bir hayatta 
 ## Geliştirme Süreci
 
 Bu proje bağımsız olarak tasarlanmış ve geliştirilmiştir.  
-Kodlama, animasyon sistemi, oyun mekaniği ve ses tasarımı bana aittir.  
+Kodlama, animasyon sistemi, oyun mekaniği ve müziği bana aittir.  
 
 ## Özellikler
 
