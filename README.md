@@ -2,11 +2,11 @@
 
 ## Proje Özeti
 
-Metal Nightmare, yukarıdan görünüşlü, yakın dövüş odaklı bir hayatta kalma oyunudur. Oyuncu, zombilerle dolu şehir sokaklarında kılıcıyla hayatta kalmaya çalışır. Fare imlecine göre saldırı yönünü otomatik belirler ve farklı saldırı animasyonları oynatır. Zombiler bağımsız hızlara ve yapay zekaya sahiptir, oyuncuyu kovalayıp saldırırlar. Zombiler hasar aldıklarında sersemleyip geri savrulur, öldüklerinde ölüm animasyonlarını oynatıp kaybolurlar.
+Metal Nightmare, yukarıdan görünüşlü, yakın dövüş odaklı bir hayatta kalma oyunudur. Oyuncu, zombilerle dolu şehir sokaklarında kılıcıyla hayatta kalmaya çalışır. Fare imlecine göre saldırı yönünü otomatik belirler ve farklı saldırı animasyonları oynatır. Zombiler bağımsız hızlara sahipti. Oyuncuyu kovalayıp saldırırlar. Zombiler hasar aldıklarında sersemleyip geri savrulur, öldüklerinde ölüm animasyonlarını oynatıp kaybolurlar.
 
 ## Geliştirme Süreci
 
-Bu proje bağımsız olarak tasarlanmış ve geliştirilmiştir.  
+Bu proje bağımsız olarak geliştirilmiştir.  
 Kodlama, animasyon sistemi, oyun mekaniği ve müziği bana aittir.  
 
 ## Özellikler
@@ -34,14 +34,15 @@ Gereksinimler:
 - `pgzero` kütüphanesi yüklü olmalı
 
 **Pgzero kurulumu:**
-
-```bash
 Debian tabanlı:
-pip install pgzero()
+```bash
 
+pip install pgzero()
+```
 
 Arch Tabanlı:
+```
 sudo pacman -S python-pipx
 pipx install pgzero
-
+```
 venv önerilmez
