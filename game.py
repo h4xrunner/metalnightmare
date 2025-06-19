@@ -13,7 +13,7 @@ zombies = []
 attack_range = 80
 attack_cooldown = 20
 
-
+#TO DO: Space attack key will change with left click
 
 wave=1
 zombies_per_wave=5
@@ -385,6 +385,9 @@ def update():
         if game_state == "playing" and not zombies:
             start_new_wave()
         if hero.is_dead:
+                for i in range(1, 400000):
+                    print("")
+                
                 game_state = "gameover"
                 return
 
