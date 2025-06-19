@@ -49,9 +49,9 @@ def start_new_wave():
         y = random.randint(100, HEIGHT-100)
         zombies.append(Zombie(x, y, random.uniform(1, 3.5)))
 
-    hero.health = 12  # Her dalgada can fullensin
+    hero.health = 12  # her dalgada can fullensin
     wave += 1
-    zombies_per_wave += 2  # Her dalgada daha fazla zombi gelsin
+    zombies_per_wave += 2  # her dalgada daha fazla zombi gelsin
 
 
 class Hero:
@@ -97,7 +97,7 @@ class Hero:
     def update(self):
         if self.health <= 0 and not self.is_dying:
             self.is_dying = True
-        self.attack_cooldown_timer = 0  # saldırıları dursun
+        self.attack_cooldown_timer = 0  # saldırıları dursun ozbek
         if self.is_dead:
             return
 
@@ -335,6 +335,8 @@ def draw():
         screen.blit("main_menu_bg", (0, 0))
         for button in menu_buttons:
             draw_text(button["label"], button["pos"], 40, "white")
+        draw_text("Survive until Wave 10!", (WIDTH // 2, 450), 50, "red")
+    
     elif game_state == "playing":
         screen.blit("map2", (0, 0))
         for z in zombies:
@@ -345,9 +347,11 @@ def draw():
         draw_bloodyscreen()#vincetting
 
     draw_text(f"Wave: {wave-1}", (WIDTH // 2, 80), 40)
+    if game_state == "gameover":
+        draw_text("GAME OVER", (WIDTH // 2, HEIGHT // 2), 80, "red")
 
 def update():
-    global current_music
+    global current_music, game_state
 
     if not sound_on:
         music.stop()
@@ -380,6 +384,9 @@ def update():
                 zombies.remove(z)
         if game_state == "playing" and not zombies:
             start_new_wave()
+        if hero.is_dead:
+                game_state = "gameover"
+                return
 
 def check_hit(hero, zombie):
     dx = zombie.x - hero.x
