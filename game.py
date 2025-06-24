@@ -346,9 +346,11 @@ def draw():
 
         draw_bloodyscreen()#vincetting
 
-    draw_text(f"Wave: {wave-1}", (WIDTH // 2, 80), 40)
-    if game_state == "gameover":
-        draw_text("GAME OVER", (WIDTH // 2, HEIGHT // 2), 80, "red")
+        draw_text(f"Wave: {wave-1}", (WIDTH // 2, 80), 40)
+        if game_state == "gameover":
+            draw_text("GAME OVER", (WIDTH // 2, HEIGHT // 2), 80, "red")
+            for i in range (1, 10000):
+                print("")
 
 def update():
     global current_music, game_state
@@ -389,6 +391,15 @@ def update():
                     print("")
                 
                 game_state = "gameover"
+                wave = 1
+                hero.health = 12                
+                music.stop()
+                music.play("main_menu_theme")
+                music.set_volume(1)
+                current_music= "main_menu_theme"
+                for i in range (1, 100000):
+                    print("")
+                game_state="menu"
                 return
 
 def check_hit(hero, zombie):
@@ -431,6 +442,10 @@ def on_mouse_down(pos):
             if abs(pos[0] - bx) < 150 and abs(pos[1] - by) < 40:
                 if button["action"] == "start":
                     game_state = "playing"
+                    hero = Hero()  # Karakteri sıfırla
+                    wave = 1
+                    zombies_per_wave = 5
+                    start_new_wave()
                     zombies = [
                         Zombie(200, 300, random.uniform(1, 3.5)),
                         Zombie(800, 500, random.uniform(1, 3.5)),
