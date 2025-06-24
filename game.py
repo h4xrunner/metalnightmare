@@ -12,7 +12,7 @@ music_playing = False
 zombies = []
 attack_range = 80
 attack_cooldown = 20
-
+lastscore = 0
 #TO DO: Space attack key will change with left click
 
 wave=1
@@ -41,7 +41,7 @@ def draw_bloodyscreen():
         screen.blit("bloodyscreen100", (0, 0))
 
 def start_new_wave():
-    global zombies, wave, zombies_per_wave, hero
+    global zombies, wave, zombies_per_wave, hero, lastscore
 
     zombies = []
     for _ in range(zombies_per_wave):
@@ -336,6 +336,7 @@ def draw():
         for button in menu_buttons:
             draw_text(button["label"], button["pos"], 40, "white")
         draw_text("Survive until Wave 10!", (WIDTH // 2, 450), 50, "red")
+        draw_text(f"Last Score: {lastscore} ", (WIDTH//6,30), 50, "green")
     
     elif game_state == "playing":
         screen.blit("map2", (0, 0))
@@ -353,7 +354,7 @@ def draw():
                 print("")
 
 def update():
-    global current_music, game_state
+    global current_music, game_state, lastscore, wave
 
     if not sound_on:
         music.stop()
@@ -385,6 +386,7 @@ def update():
             if z.is_dead:
                 zombies.remove(z)
         if game_state == "playing" and not zombies:
+            lastscore = wave;
             start_new_wave()
         if hero.is_dead:
                 for i in range(1, 400000):
