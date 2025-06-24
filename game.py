@@ -435,14 +435,14 @@ def on_mouse_move(pos):
 
 
 def on_mouse_down(pos):
-    global game_state, sound_on, zombies
+    global game_state, sound_on, zombies, hero, wave, zombies_per_wave
     if game_state == "menu":
         for button in menu_buttons:
             bx, by = button["pos"]
             if abs(pos[0] - bx) < 150 and abs(pos[1] - by) < 40:
                 if button["action"] == "start":
                     game_state = "playing"
-                    hero = Hero()  # Karakteri sıfırla
+                    hero = Hero()
                     wave = 1
                     zombies_per_wave = 5
                     start_new_wave()
