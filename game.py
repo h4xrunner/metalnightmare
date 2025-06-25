@@ -7,13 +7,16 @@ WIDTH = 1536
 HEIGHT = 1024
 
 game_state = "menu"
+game_state = "menu"
+win_timer = 0
+
 sound_on = True
 music_playing = False
 zombies = []
 attack_range = 80
 attack_cooldown = 20
 lastscore = 0
-#TO DO: Space attack key will change with left click
+#TO DO: Space attack key will change with left click ## hala yapılmadı
 
 wave=1
 zombies_per_wave=5
@@ -42,7 +45,9 @@ def draw_bloodyscreen():
 
 def start_new_wave():
     global zombies, wave, zombies_per_wave, hero, lastscore
-
+    if wave > 10:
+        game_state = "win"
+        return
     zombies = []
     for _ in range(zombies_per_wave):
         x = random.randint(100, WIDTH-100)
@@ -271,7 +276,7 @@ class Zombie:
     # bak bi şuna
         dx = target_x - self.x
         dy = target_y - self.y
-        distance = math.hypot(dx, dy)
+        distance = math.hypot(dx, dy)##hipotenus sorunu hallet
 
     # attack distance
         if distance < 80:
@@ -330,13 +335,14 @@ def draw_text(text, center, size=50, color="white"):
 
 
 def draw():
+    global game_state
     screen.clear()
     if game_state == "menu":
         screen.blit("main_menu_bg", (0, 0))
         for button in menu_buttons:
             draw_text(button["label"], button["pos"], 40, "white")
         draw_text("Survive until Wave 10!", (WIDTH // 2, 450), 50, "red")
-        draw_text(f"Last Score: {lastscore} ", (WIDTH//6,30), 50, "green")
+        draw_text(f"Last Score: {lastscore} ", (WIDTH//10,30), 50, "green")
     
     elif game_state == "playing":
         screen.blit("map2", (0, 0))
@@ -348,10 +354,16 @@ def draw():
         draw_bloodyscreen()#vincetting
 
         draw_text(f"Wave: {wave-1}", (WIDTH // 2, 80), 40)
-        if game_state == "gameover":
+    
+    elif game_state == "gameover":
+            screen.blit("map2",(0,0))
             draw_text("GAME OVER", (WIDTH // 2, HEIGHT // 2), 80, "red")
-            for i in range (1, 10000):
-                print("")
+    elif game_state == "win":
+        screen.blit("map2", (0, 0))  # arka planı istersen farklı yap
+        draw_text("YOU WIN!", (WIDTH // 2, HEIGHT // 2), 100, "yellow")
+
+            
+            
 
 def update():
     global current_music, game_state, lastscore, wave
@@ -401,8 +413,23 @@ def update():
                 current_music= "main_menu_theme"
                 for i in range (1, 100000):
                     print("")
-                game_state="menu"
                 return
+    if game_state == "gameover":
+        for i in range (1,500000):
+            print("")
+        game_state = "menu"
+    if wave > 10:
+        game_state = "win"
+        return
+    if game_state == "win":
+        global win_timer
+        win_timer += 1
+        if win_timer > 180:
+            game_state = "menu"
+            win_timer = 0
+
+
+        
 
 def check_hit(hero, zombie):
     dx = zombie.x - hero.x
@@ -445,7 +472,7 @@ def on_mouse_down(pos):
                 if button["action"] == "start":
                     game_state = "playing"
                     hero = Hero()
-                    wave = 1
+                    wave = 9
                     zombies_per_wave = 5
                     start_new_wave()
                     zombies = [
