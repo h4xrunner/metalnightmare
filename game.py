@@ -472,7 +472,7 @@ def on_mouse_down(pos):
                 if button["action"] == "start":
                     game_state = "playing"
                     hero = Hero()
-                    wave = 9
+                    wave = 1
                     zombies_per_wave = 5
                     start_new_wave()
                     zombies = [
